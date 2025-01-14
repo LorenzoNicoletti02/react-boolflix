@@ -3,19 +3,20 @@ import { handleSearch } from "../../Services/Api";
 import { useState } from "react";
 
 export default function Searchbar(props) {
-  const { data, setData } = contextUse();
+  const { setData } = contextUse();
 
   const [input, setInput] = useState();
 
-  function callbackInput() {}
+  function callBackInput(event) {
+    setInput(event.target.value);
+  }
 
   function callBackApi() {
-    handleSearch("anelli", setData);
-    console.log(data);
+    handleSearch(input, setData);
   }
   return (
     <>
-      <input type="text" />
+      <input type="text" value={input} onChange={callBackInput} />
       <button onClick={callBackApi}>Submit</button>
     </>
   );

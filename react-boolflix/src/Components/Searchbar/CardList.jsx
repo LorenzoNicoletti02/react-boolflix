@@ -2,13 +2,19 @@ import { contextUse } from "../../Context/GlobalContext";
 
 export function CardList() {
   const { data } = contextUse();
+  console.log(data);
 
   return (
     <>
       {data != undefined ? (
         data.map((curElem) => (
-          <div>
-            <h1>{curElem.title}</h1>
+          <div key={curElem.id}>
+            <h2>{"title" in curElem ? curElem.title : curElem.name}</h2>
+            <h2>
+              {"title" in curElem
+                ? curElem.original_title
+                : curElem.original_name}
+            </h2>
           </div>
         ))
       ) : (
